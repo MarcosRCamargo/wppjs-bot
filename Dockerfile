@@ -1,20 +1,27 @@
-# Use a imagem oficial do Node.js como base
-FROM node:16
+# Dockerfile
 
-# Define o diretório de trabalho dentro do contêiner
+# Use uma imagem base do Node.js
+FROM node:18
+
+# Defina o diretório de trabalho
 WORKDIR /usr/src/app
 
-# Copie os arquivos package.json e package-lock.json para o diretório de trabalho
+# Copie os arquivos do projeto para o container
 COPY package*.json ./
+COPY src ./src
+COPY entrypoint.sh /usr/src/app/entrypoint.sh
 
 # Instale as dependências
 RUN npm install
 
-# Copie o restante do código da aplicação para o diretório de trabalho
-COPY . .
+# Torne o entrypoint.sh executável
+RUN chmod +x /usr/src/app/entrypoint.sh
 
-# Exponha a porta que a aplicação irá usar
+# Defina o entrypoint
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+
+# Exponha a porta que a aplicação usa
 EXPOSE 3000
 
-# Comando para rodar a aplicação em modo de desenvolvimento
+# Comando padrão para iniciar a aplicação
 CMD ["npm", "run", "dev"]

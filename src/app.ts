@@ -3,7 +3,6 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
-import taskRouter from './routes/task.router';
 
 const app = express();
 
@@ -14,7 +13,6 @@ app.use(helmet());
 app.use(express.json());
 
 // Rotas
-app.use('/tasks', taskRouter);
 
 // Rota padrão (pode ser removida ou modificada)
 app.get('/', (req: Request, res: Response) => {
