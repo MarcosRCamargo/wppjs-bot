@@ -1,0 +1,40 @@
+{
+  "name": "ms-bot-api-gateway",
+  "version": "1.0.0",
+  "description": "Api Gateway para o bot de mensagens venom-bot. Automação de mensagens via whatsapp.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only ./src/app.ts",
+    "compile": "npx tsc",
+    "start": "node ./dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "db:migrate": "sequelize db:migrate"
+  },
+  "keywords": [],
+  "author": "Marcos R. Camargo",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/amqplib": "^0.8.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.13",
+    "@types/morgan": "^1.9.9",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "@types/uuidv4": "^5.0.0",
+    "amqplib": "^0.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.10.3",
+    "sequelize": "^6.37.3",
+    "uuidv4": "^6.2.12",
+    "venom-bot": "^5.1.0"
+  }
+}

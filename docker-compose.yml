@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: ms-bot-api-gateway
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - ./src:/usr/src/app/src
+      - /usr/src/app/node_modules # Não substitua node_modules com código fonte
+    command: npm run dev # Use o script de desenvolvimento
+
+  db:
+    image: mysql:8.0
+    container_name: ms-bot-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: your_database_name
+      MYSQL_USER: your_username
+      MYSQL_PASSWORD: your_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
